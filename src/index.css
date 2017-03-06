@@ -1,0 +1,14 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body, #root {
+	height: 100%;
+	margin: 0;
+	background: #1c1e23;
+}
+
+body {
+	font-family: sans-serif;
+	color: white;
+}

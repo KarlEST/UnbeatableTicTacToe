@@ -1,0 +1,63 @@
+.app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.app .title {
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	margin: 60px;
+}
+
+.tictactoefield {
+	width: 100%;
+	height: 70vh;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+}
+
+.playfield {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 750px;
+	max-height: 750px;
+	padding: 25px;
+}
+
+.playfield .square {
+	width: 33.33%;
+	height: 33.33%;
+	color: white;
+	font-size: 12vw;
+	position: relative;
+	max-width: 250px;
+	max-height: 250px;
+}
+
+.playfield .icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.square {
+	border: 3px solid white;
+	border-top: none;
+	border-left: none;
+}
+
+.square:nth-of-type(3n) {
+	border-right: none;
+}
+
+.square:nth-last-of-type(-n + 3) {
+	border-bottom: none;
+}

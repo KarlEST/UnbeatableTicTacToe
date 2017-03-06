@@ -1,2 +1,3 @@
 # UnbeatableTicTacToe
-Simple TicTacToe game which uses minmax algorithm 
+
+TicTacToe game made for demonstrating different TicTacToe AI solutions.

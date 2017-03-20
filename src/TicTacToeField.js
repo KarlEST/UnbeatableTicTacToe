@@ -16,16 +16,48 @@ export default class TicTacToeField extends Component {
 
 	render() {
 		return (
-			<div className="tictactoefield">
-				<PlayField squares={this.state.squares} onClick={this.handleClick} />
+			<div className="gamefield">
+				<div className="tictactoefield">
+					<PlayField squares={this.state.squares} onClick={this.handleClick}/>
+				</div>
+				<div className="score"> {this.state.winner} </div>
 			</div>
 		);
 	}
 
-	handleClick = (squareIndex) => {
-		if (this.state.squares[squareIndex] !== 'X' && this.state.squares[squareIndex] !== 'O') {
+	handleClick = (squareIndex, value) => {
+		if (this.gameManager.getEmptySquares().length === 0 || this.state.winner !== null) {
+			this.gameManager.startAgain();
+			this.setState({
+				squares: this.gameManager.getSquares(),
+				winner: null,
+			});
+
+		} else if (value === '') {
 			this.gameManager.updateState(squareIndex, 'X');
-			this.setState({squares: this.gameManager.getSquares()});
+			this.setState({ squares: this.gameManager.getSquares() });
+			const isWin = this.gameManager.checkWin();
+
+			if (isWin) {
+				this.setState({ winner: 'YOU WON' });
+
+			} else if (this.gameManager.getEmptySquares().length === 0) {
+				this.setState({ winner: 'It\'s a draw' });
+
+			} else {
+				const test = this.gameManager.minimax(this.gameManager.getSquares(), true);
+				this.gameManager.updateState(test.index, 'O');
+				this.setState({ squares: this.gameManager.getSquares() });
+				const isBotWin = this.gameManager.checkWin(this.gameManager.getSquares(), 'O');
+
+				if (isBotWin) {
+					this.setState({ winner: 'Bot won' });
+
+				} else if (this.gameManager.getEmptySquares().length === 0) {
+					this.setState({ winner: 'It\'s a draw' });
+				}
+			}
+
 		}
 	};
 
